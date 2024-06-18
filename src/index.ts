@@ -35,7 +35,7 @@ bot.api.setMyCommands([
 async function setInitData(conversation: BotConversation, ctx: BotContext) {
 	await ctx.reply('Please enter the initial data');
 	const initDataCtx = await conversation.waitFor(':text');
-	const menuButton = (await ctx.getChatMenuButton({ chat_id: ctx.chatId })) as MenuButtonWebApp;
+	const menuButton = (await ctx.getChatMenuButton()) as MenuButtonWebApp;
 	const url = new URL(menuButton.web_app.url);
 	url.searchParams.delete('initDataRaw');
 	url.searchParams.set('initDataRaw', initDataCtx.msg.text);
